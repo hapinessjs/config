@@ -1,0 +1,84 @@
+{
+    "name": "@hapiness/config",
+    "version": "1.0.0-beta.1",
+    "description": "Config Lib",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "private": false,
+    "scripts": {
+        "test": "make test",
+        "pretest": "make pretest",
+        "coveralls": "make coveralls",
+        "packaging": "make packaging",
+        "prebuild": "make pretest && make test && make clean",
+        "build": "make tsc",
+        "postbuild": "make packaging"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com/hapinessjs/config.git"
+    },
+    "keywords": [
+        "config",
+        "yml",
+        "node-config",
+        "Hapiness",
+        "Framework",
+        "NodeJS",
+        "Node",
+        "ES2015",
+        "ES2016",
+        "ES2017",
+        "ES6",
+        "ES7",
+        "ES8",
+        "Typescript"
+    ],
+    "contributors": [
+        {
+            "name": "Julien Fauville",
+            "url": "https://github.com/Juneil"
+        },
+        {
+            "name": "Antoine Gomez",
+            "url": "https://github.com/antoinegomez"
+        },
+        {
+            "name": "Sébastien Ritz",
+            "url": "https://github.com/srz09"
+        },
+        {
+            "name": "Nicolas Jessel",
+            "url": "https://github.com/njl07"
+        }
+    ],
+    "license": "SEE LICENSE IN https://github.com/hapinessjs/hapiness/blob/master/LICENSE.md",
+    "bugs": {
+        "url": "https://github.com/hapinessjs/config/issues"
+    },
+    "homepage": "https://github.com/hapinessjs/config#readme",
+    "dependencies": {
+        "@types/config": "^0.0.32",
+        "@types/node": "^7.0.12",
+        "config": "^1.26.1",
+        "debug": "^2.6.3",
+        "js-yaml": "^3.8.4",
+        "rxjs": "^5.3.0"
+    },
+    "devDependencies": {
+        "@types/fs-extra": "^2.0.0",
+        "coveralls": "^2.13.0",
+        "fs-extra": "^2.1.2",
+        "istanbul": "^1.1.0-alpha.1",
+        "mocha": "^3.2.0",
+        "mocha-typescript": "^1.0.23",
+        "rimraf": "^2.6.1",
+        "ts-node": "^3.0.2",
+        "tslint": "^5.0.0",
+        "typescript": "^2.2.2",
+        "unit.js": "^2.0.0"
+    },
+    "engines": {
+        "node": ">=7.0.0"
+    }
+}
