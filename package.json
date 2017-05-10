@@ -63,12 +63,12 @@
         "config": "^1.26.1",
         "debug": "^2.6.3",
         "js-yaml": "^3.8.4",
-        "rxjs": "^5.3.0"
+        "rxjs": "^5.4.0"
     },
     "devDependencies": {
-        "@types/fs-extra": "^2.0.0",
-        "coveralls": "^2.13.0",
-        "fs-extra": "^2.1.2",
+        "@types/fs-extra": "^3.0.0",
+        "coveralls": "^2.13.1",
+        "fs-extra": "^3.0.1",
         "istanbul": "^1.1.0-alpha.1",
         "mocha": "^3.2.0",
         "mocha-typescript": "^1.0.23",

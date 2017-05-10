@@ -103,7 +103,7 @@ class Packaging {
      */
     process() {
         this._copy('package.json').subscribe(_ => console.log('package.json copied'));
-        this._copy('README.md').subscribe(_ => console.log('package.json copied'));
+        this._copy('README.md').subscribe(_ => console.log('README.md copied'));
     }
 }
 
