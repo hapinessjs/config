@@ -1,6 +1,6 @@
 {
     "name": "@hapiness/config",
-    "version": "1.0.0-beta.3",
+    "version": "1.0.0-beta.4",
     "description": "Configuration Library to use it inside Hapiness framework or standalone",
     "main": "index.js",
     "types": "index.d.ts",
@@ -52,7 +52,7 @@
             "url": "https://github.com/njl07"
         }
     ],
-    "license": "SEE LICENSE IN https://github.com/hapinessjs/hapiness/blob/master/LICENSE.md",
+    "license": "SEE LICENSE IN https://github.com/hapinessjs/config/blob/master/LICENSE.md",
     "bugs": {
         "url": "https://github.com/hapinessjs/config/issues"
     },
@@ -70,7 +70,7 @@
         "coveralls": "^2.13.1",
         "fs-extra": "^3.0.1",
         "istanbul": "^1.1.0-alpha.1",
-        "mocha": "^3.3.0",
+        "mocha": "^3.4.1",
         "mocha-typescript": "^1.1.2",
         "rimraf": "^2.6.1",
         "ts-node": "^3.0.4",
