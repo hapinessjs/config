@@ -59,8 +59,8 @@ $ yarn add @hapiness/config
 
 ```javascript
 "dependencies": {
-    "@hapiness/core": "^1.0.0-beta.3",
-    "@hapiness/config": "^1.0.0-beta.3",
+    "@hapiness/core": "^1.0.0-beta.4",
+    "@hapiness/config": "^1.0.0-beta.4",
     //...
 }
 //...
@@ -94,34 +94,60 @@ if (Config.has('my.config')) {
 
 ```yaml
 my:
-    config: test
+    baseUrl: 'test'
 ```
 
 `Hapiness module`:
 
 ```javascript
-import { Config } from '@hapiness/config';
+// external-module.ts
+  import {
+    HapinessModule,
+    CoreModuleWithProviders,
+    InjectionToken,
+    Inject,
+    Optional,
+  } from '@hapiness/core';
 
-Config.load(); // Load config, see node-config => must be loaded only one time, do it inside main module
-
-@HapinessModule({
-        ...
-    })
-    class ModuleNeedData {
-        static setConfig(config: MyConfig): CoreModuleWithProviders {
-            return {
-                module: ModuleNeedData,
-                providers: [{ provide: MyConfig, useValue: config }]
-            };
-        }
-        constructor(@Optional() config: MyConfig) {
-            ...
-        }
-    }
+  const CONFIG = new InjectionToken('config');
+  interface Config {
+    baseUrl: string;
+  }
 
     @HapinessModule({
         ...
-        imports: [ ModuleNeedData.setConfig(Config.get('my')) ]
+    })
+
+    export class ExternalModule {
+        static setConfig(config: Config): CoreModuleWithProviders {
+            return {
+                module: ExternalModule,
+                providers: [{ provide: CONFIG, useValue: config }]
+            };
+        }
+    }
+
+    export class Service {
+      constructor(@Optional() @Inject(CONFIG) config) { // @Optional to not throw errors if config is not passed
+        ...
+      }
+    }
+```
+
+```javascript
+
+    // main-module.ts
+    import {
+      HapinessModule,
+    } from '@hapiness/core';
+    import { ExternalModule } from 'external-module';
+    import { Config } from '@hapiness/config';
+    
+    Config.load(); // Load config, see node-config
+
+    @HapinessModule({
+        ...
+        imports: [ ExternalModule.setConfig(Config.get('my')) ]
     })
     ...
 ```
@@ -130,6 +156,11 @@ Config.load(); // Load config, see node-config => must be loaded only one time, 
 
 ## Change History
 
+* v1.0.0-beta.4 (2017-05-15)
+    * Latest packages versions
+    * Fix phony scripts
+    * Documentation.
+    * Module version related to core version.
 * v1.0.0-beta.3 (2017-05-11)
     * Create `Config` module.
     * Tests module.
