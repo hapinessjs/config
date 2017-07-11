@@ -59,8 +59,8 @@ $ yarn add @hapiness/config
 
 ```javascript
 "dependencies": {
-    "@hapiness/core": "^1.0.0-beta.6",
-    "@hapiness/config": "^1.0.0-beta.6",
+    "@hapiness/core": "^1.0.0-rc.4",
+    "@hapiness/config": "^1.0.0-rc.4",
     //...
 }
 //...
@@ -156,6 +156,9 @@ my:
 
 ## Change History
 
+* v1.0.0-rc.4 (2017-07-11)
+    * Latest packages versions
+    * Module version related to core version.
 * v1.0.0-beta.6 (2017-05-26)
     * Latest packages versions
     * Module version related to core version.
@@ -184,13 +187,13 @@ my:
     <tr>
         <td align="center"><a href="https://github.com/Juneil"><img src="https://avatars3.githubusercontent.com/u/6546204?v=3&s=117" width="117"/></a></td>
         <td align="center"><a href="https://github.com/antoinegomez"><img src="https://avatars3.githubusercontent.com/u/997028?v=3&s=117" width="117"/></a></td>
-        <td align="center"><a href="https://github.com/srz09"><img src="https://avatars3.githubusercontent.com/u/6841511?v=3&s=117" width="117"/></a></td>
+        <td align="center"><a href="https://github.com/reptilbud"><img src="https://avatars3.githubusercontent.com/u/6841511?v=3&s=117" width="117"/></a></td>
         <td align="center"><a href="https://github.com/njl07"><img src="https://avatars3.githubusercontent.com/u/1673977?v=3&s=117" width="117"/></a></td>
     </tr>
     <tr>
         <td align="center"><a href="https://github.com/Juneil">Julien Fauville</a></td>
         <td align="center"><a href="https://github.com/antoinegomez">Antoine Gomez</a></td>
-        <td align="center"><a href="https://github.com/srz09">Sébastien Ritz</a></td>
+        <td align="center"><a href="https://github.com/reptilbud">Sébastien Ritz</a></td>
         <td align="center"><a href="https://github.com/njl07">Nicolas Jessel</a></td>
     </tr>
 </table>
