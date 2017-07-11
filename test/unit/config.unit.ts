@@ -8,7 +8,7 @@ class ConfigTest {
     @test('Load')
     testLoad() {
 
-        process.env.SUPPRESS_NO_CONFIG_WARNING = true;
+        process.env.SUPPRESS_NO_CONFIG_WARNING = 'true';
 
         const c = require('config');
         c.prop = {
