@@ -10,7 +10,7 @@ process.env.SUPPRESS_NO_CONFIG_WARNING = 'true';
 class ConfigHelperTest {
 
     @test('Get Provider')
-    testGetPorivder() {
+    testGetProvider() {
         Config.load();
         const provider = ConfigHelper.getProvider();
         unit.object(provider).hasProperties(['provide', 'useValue']);
@@ -27,7 +27,7 @@ class ConfigHelperTest {
     }
 
     @test('Get Provider with key')
-    testGetPorivderWKey() {
+    testGetProviderWKey() {
         const provider = ConfigHelper.getProvider('my_module');
         unit.object(provider).hasProperties(['provide', 'useValue']);
         unit.object(provider.useValue);
@@ -42,7 +42,7 @@ class ConfigHelperTest {
     }
 
     @test('Get Provider with key, again, should not recreate a new InjectionToken')
-    testGetPorivderWKeyAgain() {
+    testGetProviderWKeyAgain() {
         const provider = ConfigHelper.getProvider('my_module');
         unit.object(provider).hasProperties(['provide', 'useValue']);
         unit.object(provider.useValue);
@@ -57,7 +57,7 @@ class ConfigHelperTest {
     }
 
     @test('Get Provider with key and custom value')
-    testGetPorivderCustomValue() {
+    testGetProviderCustomValue() {
         const provider = ConfigHelper.getProvider('another_module', { beer: { lupulus: 10, chouffe: 28 } });
         unit.object(provider).hasProperties(['provide', 'useValue']);
         unit.object(provider.useValue);
