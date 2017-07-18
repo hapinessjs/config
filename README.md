@@ -59,8 +59,8 @@ $ yarn add @hapiness/config
 
 ```javascript
 "dependencies": {
-    "@hapiness/core": "^1.0.0-rc.4",
-    "@hapiness/config": "^1.0.0-rc.4",
+    "@hapiness/core": "^1.0.0-rc.6",
+    "@hapiness/config": "^1.0.0-rc.6",
     //...
 }
 //...
@@ -93,8 +93,14 @@ if (Config.has('my.config')) {
 `./config/default.yml`:
 
 ```yaml
-my:
+external_service:
     baseUrl: 'test'
+
+mymodule_database:
+    provider: postgresql
+    hostname: localhost
+    user: pguser
+    password: keyboard cat
 ```
 
 `Hapiness module`:
@@ -109,26 +115,23 @@ my:
     Optional,
   } from '@hapiness/core';
 
-  const CONFIG = new InjectionToken('config');
-  interface Config {
-    baseUrl: string;
-  }
+  import { ConfigHelper, ConfigInterface } from '@hapiness/config';
 
     @HapinessModule({
         ...
     })
 
     export class ExternalModule {
-        static setConfig(config: Config): CoreModuleWithProviders {
+        static setConfig(config: ConfigInterface): CoreModuleWithProviders {
             return {
                 module: ExternalModule,
-                providers: [{ provide: CONFIG, useValue: config }]
+                providers: [ConfigHelpers.getProvider('mymodule_database', config)]
             };
         }
     }
 
     export class Service {
-      constructor(@Optional() @Inject(CONFIG) config) { // @Optional to not throw errors if config is not passed
+      constructor(@Optional() @Inject(ConfigHelper.getInjectionToken('mymodule_database')) config) { // @Optional to not throw errors if config is not passed
         ...
       }
     }
@@ -142,20 +145,71 @@ my:
     } from '@hapiness/core';
     import { ExternalModule } from 'external-module';
     import { Config } from '@hapiness/config';
-    
+
     Config.load(); // Load config, see node-config
 
     @HapinessModule({
         ...
-        imports: [ ExternalModule.setConfig(Config.get('my')) ]
+        imports: [ ExternalModule.setConfig(Config.get('mymodule_database')) ]
     })
     ...
 ```
-    
+
+`Hapiness service`:
+
+```javascript
+
+    // main-module.ts
+    import {
+      HapinessModule,
+    } from '@hapiness/core';
+    import { ConfigHelper, Config } from '@hapiness/config';
+    import { MyCustomService } from './services';
+
+    Config.load(); // Load config, see node-config
+
+    @HapinessModule({
+        ...
+        providers: [
+            ConfigHelper.getProvider('external_service'),
+            MyCustomService,
+            ...
+        ]
+    })
+    ...
+```
+
+```javascript
+    import { Injectable } from '@hapiness/core';
+    import { ConfigInterface } from '@hapiness/config';
+
+    // my-custom-service.ts
+    @Injectable()
+    class MyCustomService {
+
+        private _baseUrl: string;
+
+        constrcutor(
+            @Inject(ConfigHelper.getInjectionToken('external_service'))
+            private _config: ConfigInterface
+        ) {}
+
+        connect() {
+            this._baseUrl = this._config.get<string>('baseUrl');
+        }
+
+    }
+    ...
+```
+
 [Back to top](#table-of-contents)
 
 ## Change History
 
+* v1.0.0-rc.6 (2017-07-18)
+    * Latest packages versions.
+    * Config provider helper.
+    * Module version related to core version.
 * v1.0.0-rc.4 (2017-07-11)
     * Latest packages versions
     * Module version related to core version.
@@ -175,7 +229,7 @@ my:
     * Tests module.
     * Documentation.
     * Module version related to core version.
-    
+
 [Back to top](#table-of-contents)
 
 ## Maintainers
