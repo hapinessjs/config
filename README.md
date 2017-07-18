@@ -93,8 +93,14 @@ if (Config.has('my.config')) {
 `./config/default.yml`:
 
 ```yaml
-my:
+external_service:
     baseUrl: 'test'
+
+database:
+    provider: postgresql
+    hostname: localhost
+    user: pguser
+    password: keyboard cat
 ```
 
 `Hapiness module`:
@@ -109,10 +115,7 @@ my:
     Optional,
   } from '@hapiness/core';
 
-  const CONFIG = new InjectionToken('config');
-  interface Config {
-    baseUrl: string;
-  }
+  import { ConfigHelper } from '@hapiness/config';
 
     @HapinessModule({
         ...
@@ -122,13 +125,13 @@ my:
         static setConfig(config: Config): CoreModuleWithProviders {
             return {
                 module: ExternalModule,
-                providers: [{ provide: CONFIG, useValue: config }]
+                providers: [{ provide: ConfigHelpers.getInjectionToken('database'), useValue: config }]
             };
         }
     }
 
     export class Service {
-      constructor(@Optional() @Inject(CONFIG) config) { // @Optional to not throw errors if config is not passed
+      constructor(@Optional() @Inject(ConfigHelper.getInjectionToken('database')) config) { // @Optional to not throw errors if config is not passed
         ...
       }
     }
@@ -142,16 +145,57 @@ my:
     } from '@hapiness/core';
     import { ExternalModule } from 'external-module';
     import { Config } from '@hapiness/config';
-    
+
     Config.load(); // Load config, see node-config
 
     @HapinessModule({
         ...
-        imports: [ ExternalModule.setConfig(Config.get('my')) ]
+        imports: [ ExternalModule.setConfig(Config.get('database')) ]
     })
     ...
 ```
-    
+
+Inject config to your service:
+
+```javascript
+
+    // main-module.ts
+    import {
+      HapinessModule,
+    } from '@hapiness/core';
+    import { Config } from '@hapiness/config';
+
+    Config.load(); // Load config, see node-config
+
+    @HapinessModule({
+        ...
+        imports: [
+            ConfigHelper.getProvider('database'),
+            ConfigHelper.getProvider('external_service')
+        ]
+    })
+    ...
+```
+
+```javascript
+
+    // database-adapter.ts
+    @Injectable()
+    class MyDatabaseAdapter {
+
+        constrcutor(
+            @Inject(ConfigHelper.getInjectionToken('database'))
+            private _config
+        ) {}
+
+        connect() {
+            adapter.connect(this._config.get<string>('host'), this._config.get<string>('user'), this._config.get<string>('password'));
+        }
+
+    }
+    ...
+```
+
 [Back to top](#table-of-contents)
 
 ## Change History
@@ -175,7 +219,7 @@ my:
     * Tests module.
     * Documentation.
     * Module version related to core version.
-    
+
 [Back to top](#table-of-contents)
 
 ## Maintainers

@@ -1,3 +1,5 @@
+process.env.SUPPRESS_NO_CONFIG_WARNING = 'true';
+
 import { test, suite } from 'mocha-typescript';
 import * as unit from 'unit.js';
 import { Config } from '../../src';
@@ -7,15 +9,8 @@ class ConfigTest {
 
     @test('Load')
     testLoad() {
-
-        process.env.SUPPRESS_NO_CONFIG_WARNING = 'true';
-
-        const c = require('config');
-        c.prop = {
-            foo: 'test'
-        };
         Config.load();
-        unit.object(Config['data']['prop']).is({ foo: 'test' });
+        unit.object(Config['_data']['prop']).is({ foo: 'test' });
 
     }
 
@@ -35,5 +30,25 @@ class ConfigTest {
         unit.must(Config.get('prop.foo')).equal('test');
         unit.must(Config.get('prop.fii', 1000)).equal(1000);
 
+    }
+
+    @test('Load custom payload')
+    testLoadCustom() {
+        Config.load({
+            user: {
+                name: {
+                    first: 'Jordy',
+                    last: 'LaFrite'
+                }
+            }
+        });
+
+        const user = Config.get('user');
+        unit.object(user);
+        unit.function(user.get);
+        unit.function(user.has);
+        unit.bool(user.has('email')).isFalse();
+        unit.function(user.get('name').get);
+        unit.string(user.get('name').get<string>('first')).is('Jordy');
     }
 }

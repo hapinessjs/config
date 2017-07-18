@@ -1,0 +1,10 @@
+{
+    "prop": {
+        "foo": "test"
+    },
+    "my_module": {
+        "user": "michel",
+        "password": "pancetta",
+        "host": "localhost"
+    }
+}

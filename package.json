@@ -58,7 +58,6 @@
     },
     "homepage": "https://github.com/hapinessjs/config#readme",
     "dependencies": {
-        "@types/config": "^0.0.32",
         "@types/node": "^8.0.10",
         "config": "^1.26.1",
         "debug": "^2.6.8",
