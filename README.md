@@ -206,7 +206,7 @@ mymodule_database:
 
 ## Change History
 
-* v1.0.0-rc.6 (2017-07-18)
+* v1.0.0 (2017-07-18)
     * Latest packages versions.
     * Config provider helper.
     * Module version related to core version.
