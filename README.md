@@ -59,8 +59,8 @@ $ yarn add @hapiness/config
 
 ```javascript
 "dependencies": {
-    "@hapiness/core": "^1.0.0-rc.4",
-    "@hapiness/config": "^1.0.0-rc.4",
+    "@hapiness/core": "^1.0.0-rc.6",
+    "@hapiness/config": "^1.0.0-rc.6",
     //...
 }
 //...
@@ -206,6 +206,10 @@ mymodule_database:
 
 ## Change History
 
+* v1.0.0-rc.6 (2017-07-18)
+    * Latest packages versions.
+    * Config provider helper.
+    * Module version related to core version.
 * v1.0.0-rc.4 (2017-07-11)
     * Latest packages versions
     * Module version related to core version.

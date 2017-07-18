@@ -1,8 +1,6 @@
 import { test, suite } from 'mocha-typescript';
 import * as unit from 'unit.js';
-import { Config } from '../../src';
-import { ConfigHelper } from '../../src/helper';
-import * as config from 'config';
+import { Config, ConfigHelper } from '../../src';
 
 process.env.SUPPRESS_NO_CONFIG_WARNING = 'true';
 

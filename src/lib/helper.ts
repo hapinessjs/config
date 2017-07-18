@@ -1,10 +1,10 @@
-import { Injectable, InjectionToken } from '@hapiness/core';
-import { Config, ConfigInterface } from './index';
+import { InjectionToken } from '@hapiness/core';
+import { Config, ConfigInterface } from './config';
 
 const ConfigInjectionTokens = {};
 const ConfigFileInjectionToken = new InjectionToken('HAPINESS_CONFIG');
 
-export declare type ConfigProvider = {
+export type ConfigProvider = {
     provide: InjectionToken<any>,
     useValue: ConfigInterface
 }
