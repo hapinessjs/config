@@ -23,17 +23,30 @@ export class ConfigHelper {
         return ConfigInjectionTokens[key];
     }
 
-    static getProvider(key?: string): ConfigProvider {
-        if (!key) {
-            return {
-                provide: ConfigHelper.getInjectionToken(),
-                useValue: Config.getData(),
-            };
+    static getProvider(key?: string, value?: any): ConfigProvider {
+        const provide = ConfigHelper.getInjectionToken(key);
+        if (key) {
+            // key and value provided, we load the value
+            if ((typeof value === 'object' && value !== null)) {
+                return {
+                    provide,
+                    useValue: Config.attachProtoDeep(value)
+                }
+            } else
+                // If we dont have any value but a key we check if
+                // the key exists in config and use it as value
+              if (Config.has(key)) {
+                return {
+                    provide,
+                    useValue: Config.get(key)
+                };
+            }
         }
 
+        // Otherwise just return the default config object
         return {
-            provide: ConfigHelper.getInjectionToken(key),
-            useValue: Config.get(key)
+            provide,
+            useValue: Config.load()
         };
     }
 

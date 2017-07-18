@@ -96,7 +96,7 @@ if (Config.has('my.config')) {
 external_service:
     baseUrl: 'test'
 
-database:
+mymodule_database:
     provider: postgresql
     hostname: localhost
     user: pguser
@@ -115,23 +115,23 @@ database:
     Optional,
   } from '@hapiness/core';
 
-  import { ConfigHelper } from '@hapiness/config';
+  import { ConfigHelper, ConfigInterface } from '@hapiness/config';
 
     @HapinessModule({
         ...
     })
 
     export class ExternalModule {
-        static setConfig(config: Config): CoreModuleWithProviders {
+        static setConfig(config: ConfigInterface): CoreModuleWithProviders {
             return {
                 module: ExternalModule,
-                providers: [{ provide: ConfigHelpers.getInjectionToken('database'), useValue: config }]
+                providers: [ConfigHelpers.getProvider('mymodule_database', config)]
             };
         }
     }
 
     export class Service {
-      constructor(@Optional() @Inject(ConfigHelper.getInjectionToken('database')) config) { // @Optional to not throw errors if config is not passed
+      constructor(@Optional() @Inject(ConfigHelper.getInjectionToken('mymodule_database')) config) { // @Optional to not throw errors if config is not passed
         ...
       }
     }
@@ -150,12 +150,12 @@ database:
 
     @HapinessModule({
         ...
-        imports: [ ExternalModule.setConfig(Config.get('database')) ]
+        imports: [ ExternalModule.setConfig(Config.get('mymodule_database')) ]
     })
     ...
 ```
 
-Inject config to your service:
+`Hapiness service`:
 
 ```javascript
 
@@ -163,33 +163,39 @@ Inject config to your service:
     import {
       HapinessModule,
     } from '@hapiness/core';
-    import { Config } from '@hapiness/config';
+    import { ConfigHelper, Config } from '@hapiness/config';
+    import { MyCustomService } from './services';
 
     Config.load(); // Load config, see node-config
 
     @HapinessModule({
         ...
-        imports: [
-            ConfigHelper.getProvider('database'),
-            ConfigHelper.getProvider('external_service')
+        providers: [
+            ConfigHelper.getProvider('external_service'),
+            MyCustomService,
+            ...
         ]
     })
     ...
 ```
 
 ```javascript
+    import { Injectable } from '@hapiness/core';
+    import { ConfigInterface } from '@hapiness/config';
 
-    // database-adapter.ts
+    // my-custom-service.ts
     @Injectable()
-    class MyDatabaseAdapter {
+    class MyCustomService {
+
+        private _baseUrl: string;
 
         constrcutor(
-            @Inject(ConfigHelper.getInjectionToken('database'))
-            private _config
+            @Inject(ConfigHelper.getInjectionToken('external_service'))
+            private _config: ConfigInterface
         ) {}
 
         connect() {
-            adapter.connect(this._config.get<string>('host'), this._config.get<string>('user'), this._config.get<string>('password'));
+            this._baseUrl = this._config.get<string>('baseUrl');
         }
 
     }

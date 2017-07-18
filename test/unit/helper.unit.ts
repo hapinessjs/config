@@ -31,7 +31,6 @@ class ConfigHelperTest {
         const provider = ConfigHelper.getProvider('my_module');
         unit.object(provider).hasProperties(['provide', 'useValue']);
         unit.object(provider.useValue);
-        unit.string(provider.useValue.constructor.name).is('Object');
         unit.function(provider.useValue.get);
         unit.function(provider.useValue.has);
         unit.object(provider.useValue.util);
@@ -47,7 +46,6 @@ class ConfigHelperTest {
         const provider = ConfigHelper.getProvider('my_module');
         unit.object(provider).hasProperties(['provide', 'useValue']);
         unit.object(provider.useValue);
-        unit.string(provider.useValue.constructor.name).is('Object');
         unit.function(provider.useValue.get);
         unit.function(provider.useValue.has);
         unit.object(provider.useValue.util);
@@ -56,6 +54,29 @@ class ConfigHelperTest {
             password: 'pancetta',
             host: 'localhost'
         });
+    }
+
+    @test('Get Provider with key and custom value')
+    testGetPorivderCustomValue() {
+        const provider = ConfigHelper.getProvider('another_module', { beer: { lupulus: 10, chouffe: 28 } });
+        unit.object(provider).hasProperties(['provide', 'useValue']);
+        unit.object(provider.useValue);
+        unit.function(provider.useValue.get);
+        unit.function(provider.useValue.has);
+        unit.object(provider.useValue.util);
+        unit.object(provider.useValue).is({ beer: { lupulus: 10, chouffe: 28 } });
+    }
+
+    @test('Get Provider with key that does not exists')
+    testGetProviderKeyNotExists() {
+        const provider = ConfigHelper.getProvider('another_module');
+        unit.object(provider).hasProperties(['provide', 'useValue']);
+        unit.object(provider.useValue);
+        unit.function(provider.useValue.get);
+        unit.function(provider.useValue.has);
+        unit.object(provider.useValue.util);
+        unit.bool(provider.useValue.has('my_module.user')).isTrue();
+        unit.bool(provider.useValue.has('prop.foo')).isTrue();
     }
 
 }

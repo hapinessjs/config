@@ -1,6 +1,10 @@
 import * as c from 'config';
-import { IConfig as ConfigInterface } from 'config';
-export { ConfigInterface };
+import * as clone from 'clone';
+import { IConfig } from 'config';
+
+export declare interface ConfigInterface extends IConfig {
+    get<T = ConfigInterface>(key: string): T;
+}
 
 const config: ConfigInterface = c;
 
@@ -11,16 +15,22 @@ export class Config {
     /**
      * Load the config
      */
-    static load(payload?: any) {
-
+    static load(payload?: any): ConfigInterface {
         if (payload) {
             // This method will make the payload object have
             // .get (chainable) .has and .util method
-            this._data = config.util.attachProtoDeep(payload);
-        } else {
-            this._data = config;
+            // Allowing custom object to be feed in the config module
+            const _payload = clone(payload);
+            this._data = this.attachProtoDeep(_payload);
+            return _payload;
         }
 
+        this._data = config;
+        return this._data;
+    }
+
+    static attachProtoDeep(payload): ConfigInterface {
+        return config.util['attachProtoDeep'](payload);
     }
 
     /**

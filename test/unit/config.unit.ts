@@ -51,4 +51,18 @@ class ConfigTest {
         unit.function(user.get('name').get);
         unit.string(user.get('name').get<string>('first')).is('Jordy');
     }
+
+    @test('Get data')
+    testGetData() {
+        unit.function(Config.getData);
+        const configData = Config.getData();
+        unit.object(configData).is({
+            user: {
+                name: {
+                    first: 'Jordy',
+                    last: 'LaFrite'
+                }
+            }
+        });
+    }
 }
