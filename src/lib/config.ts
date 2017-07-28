@@ -62,3 +62,5 @@ export class Config {
     }
 
 }
+
+Config.load();

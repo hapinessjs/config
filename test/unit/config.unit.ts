@@ -9,9 +9,7 @@ class ConfigTest {
 
     @test('Load')
     testLoad() {
-        Config.load();
         unit.object(Config['_data']['prop']).is({ foo: 'test' });
-
     }
 
     @test('Has')
