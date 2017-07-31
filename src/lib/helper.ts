@@ -11,7 +11,7 @@ export type ConfigProvider = {
 
 export class ConfigHelper {
 
-    static getInjectionToken(key?: string) {
+    static getInjectionToken(key?: string): InjectionToken<any> {
         if (!key) {
             return ConfigFileInjectionToken;
         }
