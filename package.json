@@ -1,6 +1,6 @@
 {
     "name": "@hapiness/config",
-    "version": "1.0.0-rc.6",
+    "version": "1.0.0-rc.6.1",
     "description": "Configuration Library to use it inside Hapiness framework",
     "main": "index.js",
     "types": "index.d.ts",
