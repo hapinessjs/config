@@ -81,8 +81,6 @@ my:
 ```javascript
 import { Config } from '@hapiness/config';
 
-Config.load(); // Load config, see node-config
-
 if (Config.has('my.config')) {
     console.log(Config.get('my.config')); // output: 'test'
 }
@@ -146,8 +144,6 @@ mymodule_database:
     import { ExternalModule } from 'external-module';
     import { Config } from '@hapiness/config';
 
-    Config.load(); // Load config, see node-config
-
     @HapinessModule({
         ...
         imports: [ ExternalModule.setConfig(Config.get('mymodule_database')) ]
@@ -165,8 +161,6 @@ mymodule_database:
     } from '@hapiness/core';
     import { ConfigHelper, Config } from '@hapiness/config';
     import { MyCustomService } from './services';
-
-    Config.load(); // Load config, see node-config
 
     @HapinessModule({
         ...

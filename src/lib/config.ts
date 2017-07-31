@@ -57,6 +57,14 @@ export class Config {
      * @returns any
      */
     static get<T = ConfigInterface>(key: string, defaultValue?: any): T {
+        if (!this._data) {
+            this.load();
+        }
+
+        if (!this._data) {
+            throw new Error('Empty config data');
+        }
+
         return this._data.has(key) ? this._data.get<T>(key) :
             !!defaultValue ? defaultValue : undefined;
     }

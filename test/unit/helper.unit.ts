@@ -9,7 +9,6 @@ class ConfigHelperTest {
 
     @test('Get Provider')
     testGetProvider() {
-        Config.load();
         const provider = ConfigHelper.getProvider();
         unit.object(provider).hasProperties(['provide', 'useValue']);
         unit.object(provider.useValue);

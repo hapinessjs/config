@@ -7,11 +7,20 @@ import { Config } from '../../src';
 @suite('Config')
 class ConfigTest {
 
+    @test('Get without any data should throw')
+    testEmptyData() {
+      const stub = unit.stub(Config, 'load');
+      Config['_data'] = undefined;
+      unit.exception(_ => {
+          unit.when('Throw if no data', Config.get('prop'));
+      }).isInstanceOf(Error).hasProperty('message', 'Empty config data');
+      stub.restore();
+    }
+
     @test('Load')
     testLoad() {
-        Config.load();
-        unit.object(Config['_data']['prop']).is({ foo: 'test' });
-
+        unit.undefined(Config['_data']);
+        unit.object(Config.get('prop')).is({ foo: 'test' });
     }
 
     @test('Has')
