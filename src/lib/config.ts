@@ -62,7 +62,7 @@ export class Config {
         }
 
         if (!this._data) {
-          throw new Error('Empty config data');
+            throw new Error('Empty config data');
         }
 
         return this._data.has(key) ? this._data.get<T>(key) :
