@@ -50,17 +50,18 @@ Configuration module based on [node-config](https://github.com/lorenwest/node-co
 ### `yarn` or `npm` it in your `package.json`
 
 ```bash
-$ npm install --save @hapiness/config
+$ npm install --save @hapiness/core @hapiness/config rxjs
 
 or
 
-$ yarn add @hapiness/config
+$ yarn add @hapiness/core @hapiness/config rxjs
 ```
 
 ```javascript
 "dependencies": {
-    "@hapiness/core": "^1.0.0-rc.6",
-    "@hapiness/config": "^1.0.0-rc.6",
+    "@hapiness/core": "^1.1.1",
+    "@hapiness/config": "^1.0.0",
+    "rxjs": "^5.5.2",
     //...
 }
 //...
@@ -200,29 +201,11 @@ mymodule_database:
 
 ## Change History
 
-* v1.0.0-rc.6 (2017-07-18)
-    * Latest packages versions.
-    * Config provider helper.
-    * Module version related to core version.
-* v1.0.0-rc.4 (2017-07-11)
-    * Latest packages versions
-    * Module version related to core version.
-* v1.0.0-beta.6 (2017-05-26)
-    * Latest packages versions
-    * Module version related to core version.
-* v1.0.0-beta.5 (2017-05-15)
-    * Latest packages versions
-    * Module version related to core version.
-* v1.0.0-beta.4 (2017-05-15)
-    * Latest packages versions
-    * Fix phony scripts
-    * Documentation.
-    * Module version related to core version.
-* v1.0.0-beta.3 (2017-05-11)
+* v1.0.0 (2017-10-27)
     * Create `Config` module.
     * Tests module.
     * Documentation.
-    * Module version related to core version.
+    * First stable version.
 
 [Back to top](#table-of-contents)
 
@@ -230,7 +213,7 @@ mymodule_database:
 
 <table>
     <tr>
-        <td colspan="4" align="center"><a href="https://www.tadaweb.com"><img src="https://tadaweb.com/images/tadaweb/logo.png" width="117" alt="tadaweb" /></a></td>
+        <td colspan="4" align="center"><a href="https://www.tadaweb.com"><img src="http://bit.ly/2xHQkTi" width="117" alt="tadaweb" /></a></td>
     </tr>
     <tr>
         <td align="center"><a href="https://github.com/Juneil"><img src="https://avatars3.githubusercontent.com/u/6546204?v=3&s=117" width="117"/></a></td>
