@@ -59,8 +59,8 @@ $ yarn add @hapiness/core @hapiness/config rxjs
 
 ```javascript
 "dependencies": {
-    "@hapiness/core": "^1.1.1",
-    "@hapiness/config": "^1.0.0",
+    "@hapiness/core": "^1.2.2",
+    "@hapiness/config": "^1.1.0",
     "rxjs": "^5.5.2",
     //...
 }
@@ -200,7 +200,10 @@ mymodule_database:
 [Back to top](#table-of-contents)
 
 ## Change History
-
+* v1.1.0 (2017-11-20)
+    * Latest packages' versions.
+    * Documentation.
+    * Change packaging process.
 * v1.0.0 (2017-10-27)
     * Create `Config` module.
     * Tests module.

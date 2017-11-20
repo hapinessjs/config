@@ -1,8 +1,8 @@
 {
     "name": "@hapiness/config",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Configuration Library to use it inside Hapiness framework",
-    "main": "index.js",
+    "main": "commonjs/index.js",
     "types": "index.d.ts",
     "private": false,
     "scripts": {
@@ -59,15 +59,15 @@
     "homepage": "https://github.com/hapinessjs/config#readme",
     "dependencies": {
         "@types/config": "^0.0.33",
-        "@types/node": "^8.0.47",
+        "@types/node": "^8.0.53",
         "clone": "^2.1.1",
-        "config": "^1.27.0",
+        "config": "^1.28.1",
         "debug": "^3.1.0",
         "js-yaml": "^3.10.0"
     },
     "devDependencies": {
-        "@hapiness/core": "^1.1.1",
-        "@types/fs-extra": "^4.0.3",
+        "@hapiness/core": "^1.2.2",
+        "@types/fs-extra": "^4.0.5",
         "coveralls": "^3.0.0",
         "fs-extra": "^4.0.2",
         "istanbul": "^1.1.0-alpha.1",
@@ -84,7 +84,7 @@
         "node": ">=7.0.0"
     },
     "peerDependencies": {
-        "@hapiness/core": "^1.1.1",
+        "@hapiness/core": "^1.2.2",
         "rxjs": "^5.5.2"
     }
 }
