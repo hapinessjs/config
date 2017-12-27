@@ -10,6 +10,12 @@ export class Config {
 
     private static _data: ConfigInterface;
 
+    static ensureConfigData() {
+        if (!this._data) {
+            this.load();
+        }
+    }
+
     /**
      * Load the config
      */
@@ -35,6 +41,7 @@ export class Config {
      * Return config data
      */
     static getData() {
+        this.ensureConfigData();
         return this._data;
     }
 
@@ -45,6 +52,7 @@ export class Config {
      * @returns boolean
      */
     static has(key: string): boolean {
+        this.ensureConfigData();
         return this._data.has(key);
     }
 
@@ -57,9 +65,7 @@ export class Config {
      * @returns any
      */
     static get<T = ConfigInterface>(key: string, defaultValue?: any): T {
-        if (!this._data) {
-            this.load();
-        }
+        this.ensureConfigData();
 
         if (!this._data) {
             throw new Error('Empty config data');
