@@ -50,18 +50,16 @@ Configuration module based on [node-config](https://github.com/lorenwest/node-co
 ### `yarn` or `npm` it in your `package.json`
 
 ```bash
-$ npm install --save @hapiness/core @hapiness/config rxjs
+$ npm install --save @h@hapiness/config
 
 or
 
-$ yarn add @hapiness/core @hapiness/config rxjs
+$ yarn add @hapiness/config
 ```
 
 ```javascript
 "dependencies": {
-    "@hapiness/core": "^1.2.2",
-    "@hapiness/config": "^1.1.1",
-    "rxjs": "^5.5.2",
+    "@hapiness/config": "^1.2.0",
     //...
 }
 //...
@@ -200,6 +198,10 @@ mymodule_database:
 [Back to top](#table-of-contents)
 
 ## Change History
+* v1.2.0 (2018-05-09)
+    * Delete obsolete `peerDependencies`
+    * Latest packages' versions
+    * Documentation
 * v1.1.1 (2017-12-28)
     * Fix load `config`
 * v1.1.0 (2017-11-20)
@@ -238,6 +240,6 @@ mymodule_database:
 
 ## License
 
-Copyright (c) 2017 **Hapiness** Licensed under the [MIT license](https://github.com/hapinessjs/config/blob/master/LICENSE.md).
+Copyright (c) 2018 **Hapiness** Licensed under the [MIT license](https://github.com/hapinessjs/config/blob/master/LICENSE.md).
 
 [Back to top](#table-of-contents)

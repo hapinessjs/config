@@ -1,4 +1,4 @@
-import { InjectionToken } from '@hapiness/core';
+import { InjectionToken } from 'injection-js';
 import { Config, ConfigInterface } from './config';
 
 const ConfigInjectionTokens = {};
