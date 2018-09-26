@@ -198,6 +198,8 @@ mymodule_database:
 [Back to top](#table-of-contents)
 
 ## Change History
+* v1.2.1 (2018-09-26)
+    * Fix a bug when default value of `get()` was a falsy value and wrongly interpreted as undefined
 * v1.2.0 (2018-05-09)
     * Delete obsolete `peerDependencies`
     * Latest packages' versions
