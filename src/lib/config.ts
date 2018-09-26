@@ -72,7 +72,8 @@ export class Config {
         }
 
         return this._data.has(key) ? this._data.get<T>(key) :
-            !!defaultValue ? defaultValue : undefined;
+            defaultValue !== undefined ? defaultValue : undefined;
+
     }
 
 }
