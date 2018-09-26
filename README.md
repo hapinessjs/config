@@ -59,7 +59,7 @@ $ yarn add @hapiness/config
 
 ```javascript
 "dependencies": {
-    "@hapiness/config": "^1.2.0",
+    "@hapiness/config": "^1.2.1",
     //...
 }
 //...
