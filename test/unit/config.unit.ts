@@ -41,6 +41,14 @@ class ConfigTest {
 
     }
 
+    @test('Get with a falsy value as default value should return it')
+    testGetFalsyDefaultValue() {
+        unit.must(Config.get('null', null)).equal(null);
+        unit.must(Config.get('false', false)).equal(false);
+        unit.must(Config.get('empty-string', '')).equal('');
+        unit.must(Config.get('undefined', undefined)).equal(undefined);
+    }
+
     @test('Load custom payload')
     testLoadCustom() {
         Config.load({
